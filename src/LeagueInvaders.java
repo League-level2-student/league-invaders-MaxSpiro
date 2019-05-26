@@ -12,11 +12,13 @@ public class LeagueInvaders {
 public static void main(String[] args) {
 	LeagueInvaders l = new LeagueInvaders();
 	l.setup();
+	
 }
 void setup() {
 	frame.add(gamepanel);
 frame.setSize(WIDTH,HEIGHT);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setVisible(true);
+frame.addKeyListener(gamepanel);
 }
 }
