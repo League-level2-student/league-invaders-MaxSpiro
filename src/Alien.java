@@ -3,20 +3,16 @@ import java.awt.Graphics;
 
 public class Alien extends GameObject{
 
-	Alien(int x, int y , int width, int height){
-		x = x;
-		y = y;
-		width = width;
-		height = height;
+	Alien(int x, int y, int width, int height) {
+		super(x, y, width, height);
 		speed = 1;
-		isActive = true;
+		// TODO Auto-generated constructor stub
 	}
 	void update() {
 		y+=speed;
 	}
 	void draw(Graphics g) {
 		g.setColor(Color.YELLOW);
-		g.drawRect(x, y, width, height);
+        g.fillRect(x, y, width, height);
 	}
-	
 }

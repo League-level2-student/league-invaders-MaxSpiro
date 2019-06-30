@@ -3,29 +3,25 @@ import java.awt.Graphics;
 
 public class Rocketship extends GameObject{
 
-	Rocketship(int x, int y, int width, int height){
-		x = x;
-		y = y;
-		width = width;
-		height = height;
+	Rocketship(int x, int y, int width, int height) {
+		super(x, y, width, height);
 		speed = 10;
+		// TODO Auto-generated constructor stub
 	}
-	
 	void draw(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(x, y, width, height);
 	}
 	public void right() {
-        x+=speed;
-    }
+		x+=speed;
+	}
 	public void left() {
-        x-=speed;
-    }
+		x-=speed;
+	}
 	public void up() {
-        y-=speed;
-    }
+		y-=speed;
+	}
 	public void down() {
-        y+=speed;
-    }
-
+		y+=speed;
+	}
 }
