@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 
 public class GameObject {
 int x;
@@ -6,6 +7,7 @@ int width;
 int height;
 int speed;
 boolean isActive;
+Rectangle collisionBox;
 GameObject(int x, int y, int width, int height){
 	this.x = x;
 	this.y = y;
@@ -13,8 +15,8 @@ GameObject(int x, int y, int width, int height){
 	this.height = height;
 	speed = 0;
 	isActive = true;
+	collisionBox = new Rectangle(x,y,width,height);
 }
 void update() {
-	
 }
 }
