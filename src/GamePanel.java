@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -69,6 +70,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	void drawGameState(Graphics g) {
 		g.drawImage(image,0,0,LeagueInvaders.WIDTH,LeagueInvaders.HEIGHT,null);
 		objectmanager.draw(g);
+		g.setFont(titleFont);
+		g.setColor(Color.YELLOW);
+		g.drawString("Score: "+objectmanager.getScore(), 75, 100);
 	}
 	void drawEndState(Graphics g) {
 		g.setColor(Color.RED);
@@ -78,6 +82,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		g.drawString("Game Over", 125, 100);
 		g.setFont(smallFont);
 		g.drawString("Press ENTER to restart",100,500);
+		g.drawString("Your score was "+objectmanager.getScore(),100,300);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -88,7 +93,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}else if(currentState == END){
 		    updateEndState();
 		}
-		System.out.println("action");
 		repaint();
 		
 	}
@@ -104,6 +108,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+			if(currentState==END) {
+				rocketship = new Rocketship(250,700,50,50);
+				objectmanager = new ObjectManager(rocketship);
+			}
+		}
+		if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+			if(currentState==MENU){
+				JOptionPane.showMessageDialog(null, " Move with arrow keys \n "
+						+ "Press space to shoot \n Shoot aliens before they crash into you!");
+			}
+		}
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
@@ -116,7 +132,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		        currentState=END;
 		        alienSpawn.stop();
 		    }
-		}  
+		}
+		
 		if(currentState==GAME) {
 			if (rocketship.y>0 && e.getKeyCode()==KeyEvent.VK_UP) {
 			    rocketship.up();
